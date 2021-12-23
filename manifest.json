@@ -1,0 +1,19 @@
+{
+    "name": "Web Toolbox",
+    "description": "Chrome extension with set of tools that I use.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": ["https://magazine.alza.cz/read/*"],
+            "run_at": "document_start",
+            "js": ["alza-magazine.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+          "resources": ["resources/alza-magazine-isDownloadable.js"],
+          "matches": ["https://*/*"]
+        }
+      ]
+}
