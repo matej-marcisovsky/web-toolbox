@@ -1,19 +1,43 @@
 {
-    "name": "Web Toolbox",
-    "description": "Chrome extension with set of tools that I use.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "content_scripts": [
-        {
-            "matches": ["https://magazine.alza.cz/read/*"],
-            "run_at": "document_start",
-            "js": ["alza-magazine.js"]
-        }
-    ],
-    "web_accessible_resources": [
-        {
-          "resources": ["resources/alza-magazine-isDownloadable.js"],
-          "matches": ["https://*/*"]
-        }
+  "name": "Web Toolbox",
+  "description": "Chrome extension with set of tools that I use.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://magazine.alza.cz/read/*"
+      ],
+      "run_at": "document_start",
+      "js": [
+        "contentScripts/alza-magazine.js"
       ]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "webAccessibleResources/alza-magazine-isDownloadable.js",
+        "webAccessibleResources/dvtv.js"
+      ],
+      "matches": [
+        "https://*/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://*/*"
+  ]
 }
